@@ -46,6 +46,11 @@ workflow GTDBTK {
                 summary
                     .splitCsv(header: true, sep: '\t')
                     .each { row ->
+                        // BUSCO reports "No genes found" with empty metrics for bins where Prodigal finds no genes:
+                        // nothing to assess, so the bin is left without readings (and discarded below)
+                        if (!row[cols[1]]?.trim() || !row[cols[2]]?.trim()) {
+                            return
+                        }
                         // CheckM / CheckM2 strip the .fa extension from the bin name
                         def bin_name = tool == 'busco' ? row[cols[0]] : row[cols[0]] + '.fa'
                         def completeness = "${row[cols[1]]}".toDouble()
