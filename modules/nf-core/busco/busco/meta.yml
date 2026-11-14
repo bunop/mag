@@ -175,28 +175,6 @@ output:
           type: directory
           description: Lineages downloaded by BUSCO when running the analysis, for example bacteria_odb12
           pattern: "busco_downloads/lineages/*"
-  single_copy_faa:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test' ]
-      - "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.faa":
-          type: file
-          description: Single copy .faa sequence files
-          pattern: "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.faa"
-          ontologies: []
-  single_copy_fna:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test' ]
-      - "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.fna":
-          type: file
-          description: Single copy .fna sequence files
-          pattern: "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.fna"
-          ontologies: []
   versions_busco:
     - - ${task.process}:
           type: string

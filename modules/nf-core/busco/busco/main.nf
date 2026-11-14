@@ -34,8 +34,6 @@ process BUSCO_BUSCO {
     tuple val(meta), path("*-busco/*/translated_proteins"), emit: translated_dir, optional: true
     tuple val(meta), path("*-busco"), emit: busco_dir
     tuple val(meta), path("busco_downloads/lineages/*"), emit: downloaded_lineages, optional: true
-    tuple val(meta), path("*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.faa"), emit: single_copy_faa, optional: true
-    tuple val(meta), path("*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.fna"), emit: single_copy_fna, optional: true
     tuple val("${task.process}"), val('busco'), eval("busco --version 2> /dev/null | sed 's/BUSCO //g'"), emit: versions_busco, topic: versions
 
     when:

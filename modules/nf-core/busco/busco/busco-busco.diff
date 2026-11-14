@@ -1,0 +1,46 @@
+Changes in component 'nf-core/busco/busco'
+'modules/nf-core/busco/busco/environment.yml' is unchanged
+Changes in 'busco/busco/main.nf':
+--- modules/nf-core/busco/busco/main.nf
++++ modules/nf-core/busco/busco/main.nf
+@@ -34,8 +34,6 @@ process BUSCO_BUSCO {
+     tuple val(meta), path("*-busco/*/translated_proteins"), emit: translated_dir, optional: true
+     tuple val(meta), path("*-busco"), emit: busco_dir
+     tuple val(meta), path("busco_downloads/lineages/*"), emit: downloaded_lineages, optional: true
+-    tuple val(meta), path("*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.faa"), emit: single_copy_faa, optional: true
+-    tuple val(meta), path("*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.fna"), emit: single_copy_fna, optional: true
+     tuple val("${task.process}"), val('busco'), eval("busco --version 2> /dev/null | sed 's/BUSCO //g'"), emit: versions_busco, topic: versions
+ 
+     when:
+Changes in 'busco/busco/meta.yml':
+--- modules/nf-core/busco/busco/meta.yml
++++ modules/nf-core/busco/busco/meta.yml
+@@ -175,28 +175,6 @@ output:
+           type: directory
+           description: Lineages downloaded by BUSCO when running the analysis, for example bacteria_odb12
+           pattern: "busco_downloads/lineages/*"
+-  single_copy_faa:
+-    - - meta:
+-          type: map
+-          description: |
+-            Groovy Map containing sample information
+-            e.g. [ id:'test' ]
+-      - "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.faa":
+-          type: file
+-          description: Single copy .faa sequence files
+-          pattern: "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.faa"
+-          ontologies: []
+-  single_copy_fna:
+-    - - meta:
+-          type: map
+-          description: |
+-            Groovy Map containing sample information
+-            e.g. [ id:'test' ]
+-      - "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.fna":
+-          type: file
+-          description: Single copy .fna sequence files
+-          pattern: "*-busco/*/run_*/busco_sequences/single_copy_busco_sequences/*.fna"
+-          ontologies: []
+   versions_busco:
+     - - ${task.process}:
+           type: string
