@@ -17,7 +17,6 @@ workflow SHORTREAD_ASSEMBLY {
             def meta_new = meta + [assembler: 'SPAdes']
             [meta_new, assembly]
         }
-        ch_versions = ch_versions.mix(METASPADES.out.versions)
 
         ch_assembled_contigs = ch_assembled_contigs.mix(ch_spades_assemblies)
     }

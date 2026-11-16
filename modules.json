@@ -346,7 +346,7 @@
                     },
                     "spades": {
                         "branch": "master",
-                        "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
+                        "git_sha": "7856059a332d5d79c7de61221c88f2fb1efae1f4",
                         "installed_by": ["modules"]
                     },
                     "tiara/tiara": {
